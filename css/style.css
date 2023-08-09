@@ -1,0 +1,148 @@
+main {
+  background-color: #EFF2F6;
+  min-height: 75vh;
+}
+
+.fixed-navbar__wrapper {
+  width: 100%;
+  background: var(--dark, #0F1621);
+  color: var(--neutral-100, #EFF2F6);
+}
+
+.fixed-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-variant-numeric: lining-nums proportional-nums;
+  /* Desktop/16/16 Regular */
+  font-family: Raleway;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+
+.fixed-navbar a {
+  color: #EFF2F6;
+  text-decoration: none;
+}
+
+.fixed-navbar__links {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  list-style: none;
+}
+
+@media (max-width: 960px) {
+  max-height: 56px;
+}
+
+.icon-with-text::before {
+  margin-right: 5px;
+  width: 24px;
+  height: 24px;
+  content: " ";
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.icon-with-text__geo::before {
+  background-image: url("../img/svg/interface/Group.svg");
+}
+
+.icon-with-text__email::before {
+  background-image: url("../img/svg/emails/Group.svg");
+}
+
+.icon-with-text__phone::before {
+  background-image: url("../img/svg/phones/Group.svg");
+}
+
+.main-navbar__wrapper {
+  /*height: 80px;*/
+  padding: 12px;
+  background-color: #ffffff;
+}
+
+.main-navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: inline-block;
+  width: 92px;
+  height: 56px;
+  content: " ";
+  background-image: url("../img/svg/Logo.svg");
+}
+
+.icon-link {
+  width: 40px;
+  height: 40px;
+  content: " ";
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: block;
+  vertical-align: middle;
+}
+
+.icon-link__whatsapp {
+  background-image: url("../img/svg/Whatups.svg");
+}
+
+.icon-link__telegram {
+  background-image: url("../img/svg/Telegram.svg");
+}
+
+.icon-link__profile {
+  background-image: url("../img/svg/user/Group.svg");
+}
+
+.icon-link__shopping-cart {
+  background-image: url("../img/svg/shopping/Group.svg");
+}
+
+.main-navbar__icon-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+}
+
+.search-input__wrapper {
+  width: 100%;
+  padding: 0 12px;
+}
+
+.search-input {
+  all: unset;
+
+  width: 100%;
+  cursor: text;
+  padding: 12px 12px 12px 20px;
+  border-radius: 12px;
+  background: var(--neutral-100, #EFF2F6);
+  font-family: Raleway;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.search-input::after {
+  display: inline-block;
+  background-image: url("../img/svg/search/Group.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  content: " ";
+  width: 24px;
+  height: 24px;
+}
