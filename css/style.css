@@ -118,12 +118,12 @@ main {
 
 .search-input__wrapper {
   width: 100%;
+  position: relative;
   padding: 0 12px;
 }
 
 .search-input {
   all: unset;
-
   width: 100%;
   cursor: text;
   padding: 12px 12px 12px 20px;
@@ -136,13 +136,20 @@ main {
   line-height: 24px;
 }
 
-.search-input::after {
+.search-input__wrapper::after {
   display: inline-block;
+  position: absolute;
+  content: " ";
+  top: calc(50% - 12px);
+  right: -5px;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
   background-image: url("../img/svg/search/Group.svg");
   background-size: contain;
   background-repeat: no-repeat;
-  vertical-align: middle;
-  content: " ";
-  width: 24px;
-  height: 24px;
+}
+
+.card {
+
 }

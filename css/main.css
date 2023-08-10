@@ -289,3 +289,11 @@ textarea {
   }
 }
 
+a {
+  transition: 250ms;
+}
+
+a:hover {
+  transform: scale(1.1);
+}
+
