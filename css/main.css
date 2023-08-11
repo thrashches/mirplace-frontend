@@ -297,3 +297,32 @@ a:hover {
   transform: scale(1.1);
 }
 
+.flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.s-btw {
+  justify-content: space-between;
+}
+
+.m-48 {
+  margin-top: 48px !important;
+  margin-bottom: 48px !important;
+}
+
+.p-16 {
+  padding: 16px !important;
+}
+
+.text-secondary {
+  color: var(--neutral-600, #7D7D7D);
+  font-variant-numeric: lining-nums proportional-nums;
+  /* Desktop/14/14 Regular */
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
