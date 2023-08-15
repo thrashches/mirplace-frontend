@@ -303,6 +303,10 @@ a:hover {
   align-items: center;
 }
 
+.g-16 {
+  gap: 16px;
+}
+
 .s-btw {
   justify-content: space-between;
 }
@@ -318,6 +322,11 @@ a:hover {
 .m-48 {
   margin-top: 48px !important;
   margin-bottom: 48px !important;
+}
+
+.m-24 {
+  margin-top: 24px !important;
+  margin-bottom: 24px !important;
 }
 
 .p-16 {

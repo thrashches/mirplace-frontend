@@ -1,0 +1,10 @@
+.main-slider__wrapper {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  gap: 32px;
+}
+
+.main-slider {
+  border-radius: 20px;
+  background: linear-gradient(90deg, #FF8008 0%, #FFC837 100%);
+}

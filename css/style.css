@@ -152,8 +152,9 @@ main {
 }
 
 .section-header {
+  margin-right: 0;
+  margin-left: 0;
   color: #000;
-  text-align: center;
   font-variant-numeric: lining-nums proportional-nums;
 
   /* Desktop/24 Bold */
@@ -196,6 +197,11 @@ main {
   background: var(--primary-600, #0085FF);
 }
 
+.btn-secondary {
+  color: var(--primary-600, #0085FF);
+  background: var(--neutral-200, #E9ECF0);
+}
+
 .btn-arrow {
   padding-right: 24px;
 }
@@ -219,6 +225,22 @@ main {
   position: absolute;
   content: " ";
   background-image: url("../img/svg/arrows/arrow-white.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  right: 4px;
+}
+
+.btn-arrow-blue {
+  padding-right: 32px !important;
+}
+
+
+.btn-arrow-blue::after {
+  position: absolute;
+  content: " ";
+  background-image: url("../img/svg/arrows/arrow-blue.svg");
   background-size: contain;
   background-repeat: no-repeat;
   width: 24px;
@@ -483,4 +505,17 @@ footer {
   display: inline-block;
   vertical-align: middle;
   background-image: url("../img/svg/phones/phone-blue.svg");
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
