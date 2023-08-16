@@ -329,8 +329,16 @@ a:hover {
   margin-bottom: 24px !important;
 }
 
+.p-0 {
+  padding: 0 !important;
+}
+
 .p-16 {
   padding: 16px !important;
+}
+
+.p-32 {
+  padding: 32px !important;
 }
 
 .text-secondary {
@@ -417,4 +425,8 @@ p {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+div {
+  box-sizing: border-box;
 }

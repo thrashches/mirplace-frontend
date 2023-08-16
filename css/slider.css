@@ -1,6 +1,6 @@
 .main-slider__wrapper {
   display: grid;
-  grid-template-columns: 7fr 3fr;
+  grid-template-columns: 8fr 3fr;
   gap: 32px;
 }
 
@@ -102,9 +102,6 @@
   background-size: 32px;
 }
 
-.left:hover{
-  transform: scale(1.1);}
-
 .right {
   content: " ";
   background-image: url("../img/svg/btn/right.svg");
@@ -112,4 +109,24 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-size: 32px;
+}
+
+.card-slider {
+  display: grid;
+}
+
+@media (min-width: 768px) {
+  .card-slider {
+    grid-template-columns: 1fr 1fr 1fr;
+  };
+}
+
+@media (min-width: 992px) {
+  .card-slider {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  };
+}
+
+@media (min-width: 1200px) {
+  
 }

@@ -19,7 +19,28 @@
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/slider.css" />
-
+    <link rel="stylesheet" href="css/its-slider.css" />
+    <script src="./js/itc-slider.js" defer></script>
+    <style>
+      .itc-slider__item {
+        padding: 0 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      @media (min-width: 768px) {
+        .itc-slider__item {
+          flex: 0 0 33.333333333%;
+          max-width: 33.333333333%;
+        }
+       }
+     @media (min-width: 992px) {
+      .itc-slider__item {
+        flex: 0 0 16.6666666666%;
+        max-width: 16.6666666666%;
+      }
+     }
+    </style>
     <meta name="theme-color" content="#fafafa" />
   </head>
 
@@ -75,6 +96,9 @@
             <div>
               <a class="logo" href="#"></a>
             </div>
+            <div>
+              <button class="btn btn-primary btn-menu">Каталог</button>
+            </div>
             <div class="search-input__wrapper">
               <input
                 class="input search-input"
@@ -113,7 +137,7 @@
             <button class="btn btn-white btn-arrow-black">Подробнее</button>
           </div>
           <div class="slider__image-block">
-            <img src="./img/png/chemical.png" alt="">
+            <img src="./img/png/chemical.png" alt="" />
           </div>
           <div class="slider__controls">
             <button class="slider__controls__btn left"></button>
@@ -126,6 +150,8 @@
             <p class="text-secondary">
               Ответим на интересующие вас вопросы, поможем с выбором продукции
             </p>
+          </div>
+          <div class="card__footer">
             <button class="btn btn-primary btn-arrow-white">
               Получить консультацию
             </button>
@@ -442,73 +468,190 @@
         </div>
       </section>
       <section class="container m-48">
-        <div class="card">
-          <div class="flex">
-            <div class="col">
-              <h3 class="section-header">12 лет успешной работы</h3>
-              <p>
-                ООО ТПК “МИР” надежный поставщик профессионального
-                высокопрочного крепежа и метизов по оптимальным ценам
-              </p>
-              <div class="feature-grid">
-                <div>
-                  <h4>Высокое качество крепежа</h4>
-                  <p class="text-secondary">
-                    Высокое качество, подтвержденное сертификатами
-                  </p>
-                </div>
-                <div>
-                  <h4>Техническая поддержка</h4>
-                  <p class="text-secondary">
-                    Опытные менеджеры самой высокой квалификации
-                  </p>
-                </div>
-                <div>
-                  <h4>Импортозамещение крепежа</h4>
-                  <p class="text-secondary">
-                    Целый ряд преимуществ по сравнению с зарубежными аналогами
-                  </p>
-                </div>
-                <div>
-                  <h4>Программа лояльности</h4>
-                  <p class="text-secondary">
-                    Дополнительные выгоды с нашей программой лояльности
-                  </p>
-                </div>
+        <div class="card-with-img">
+          <div class="col p-32">
+            <h3 class="section-header">12 лет успешной работы</h3>
+            <p>
+              ООО ТПК “МИР” надежный поставщик профессионального высокопрочного
+              крепежа и метизов по оптимальным ценам
+            </p>
+            <div class="feature-grid">
+              <div>
+                <h4>Высокое качество крепежа</h4>
+                <p class="text-secondary">
+                  Высокое качество, подтвержденное сертификатами
+                </p>
               </div>
-              <div class="flex g-16">
-                <button class="btn btn-primary btn-arrow-white">
-                  Получить консультацию
-                </button>
-                <button class="btn btn-secondary btn-arrow-blue">
-                  Перейти в раздел
-                </button>
+              <div>
+                <h4>Техническая поддержка</h4>
+                <p class="text-secondary">
+                  Опытные менеджеры самой высокой квалификации
+                </p>
+              </div>
+              <div>
+                <h4>Импортозамещение крепежа</h4>
+                <p class="text-secondary">
+                  Целый ряд преимуществ по сравнению с зарубежными аналогами
+                </p>
+              </div>
+              <div>
+                <h4>Программа лояльности</h4>
+                <p class="text-secondary">
+                  Дополнительные выгоды с нашей программой лояльности
+                </p>
               </div>
             </div>
-            <div class="col">
-              <img
-                src="./img/svg/illustrations/reshot-illustration-delivery-checklist-75NPJ6ELQK%201.svg"
-                alt=""
-                srcset=""
-              />
+            <div class="flex g-16">
+              <button class="btn btn-primary btn-arrow-white">
+                Получить консультацию
+              </button>
+              <button class="btn btn-secondary btn-arrow-blue">
+                Перейти в раздел
+              </button>
             </div>
+          </div>
+          <div class="col p-32">
+            <img
+              src="./img/svg/illustrations/reshot-illustration-delivery-checklist-75NPJ6ELQK%201.svg"
+              alt=""
+              srcset=""
+            />
           </div>
         </div>
       </section>
       <section class="container m-48">
-        <div class="card">
-          <div class="flex">
-            <div class="col">
-              <h3 class="section-header">Оперативная доставка до объекта</h3>
-              <p>
-                Доставка до терминала транспортной компании или непосредственно
-                до объекта «ПОД КЛЮЧ»
-              </p>
-              <button class="btn btn-primary btn-arrow-white">Подробнее</button>
+        <div
+          class="itc-slider"
+          data-slider="itc-slider"
+          data-loop="false"
+          data-autoplay="false"
+        >
+          <div class="itc-slider__wrapper">
+            <div class="itc-slider__items">
+              <div class="itc-slider__item">
+                <!-- Контент 1 слайда -->
+                <div class="card itc-slider__img__wrapper">
+                  <img
+                    class="itc-slider__img"
+                    src="./img/png/logos/bralo.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="itc-slider__item">
+                <!-- Контент 2 слайда -->
+                <div class="card itc-slider__img__wrapper">
+                  <img
+                    class="itc-slider__img"
+                    src="./img/png/logos/fasty.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="itc-slider__item">
+                <!-- Контент 3 слайда -->
+                <div class="card itc-slider__img__wrapper">
+                  <img
+                    class="itc-slider__img"
+                    src="./img/png/logos/holdex.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="itc-slider__item">
+                <!-- Контент 4 слайда -->
+                <div class="card itc-slider__img__wrapper">
+                  <img
+                    class="itc-slider__img"
+                    src="./img/png/logos/mkt.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="itc-slider__item">
+                <!-- Контент 5 слайда -->
+                <div class="card itc-slider__img__wrapper">
+                  <img
+                    class="itc-slider__img"
+                    src="./img/png/logos/mungo.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="itc-slider__item">
+                <!-- Контент 1 слайда -->
+                <div class="card  itc-slider__img__wrapper">
+                  <img
+                    class="itc-slider__img"
+                    src="./img/png/logos/holdex.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="itc-slider__item">
+                <!-- Контент 2 слайда -->
+                <div class="card  itc-slider__img__wrapper">
+                  <img
+                    class="itc-slider__img"
+                    src="./img/png/logos/fasty.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="itc-slider__item">
+                <!-- Контент 3 слайда -->
+                <div class="card itc-slider__img__wrapper">
+                  <img
+                    class="itc-slider__img"
+                    src="./img/png/logos/mungo.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="itc-slider__item">
+                <!-- Контент 4 слайда -->
+                <div class="card itc-slider__img__wrapper">
+                  <img
+                    class="itc-slider__img"
+                    src="./img/png/logos/mkt.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="itc-slider__item">
+                <!-- Контент 5 слайда -->
+                <div class="card itc-slider__img__wrapper">
+                  <img
+                    class="itc-slider__img"
+                    src="./img/png/logos/bralo.png"
+                    alt=""
+                  />
+                </div>
+              </div>
             </div>
-            <div class="col">
-              <img src="./img/png/Frame%20152.png" alt="" srcset="" />
-            </div>
+          </div>
+          <button class="itc-slider__btn itc-slider__btn_prev left"></button>
+          <button class="itc-slider__btn itc-slider__btn_next right"></button>
+        </div>
+      </section>
+
+      <section class="container m-48">
+        <div class="card-with-img">
+          <div class="col p-32">
+            <h3 class="section-header">Оперативная доставка до объекта</h3>
+            <p>
+              Доставка до терминала транспортной компании или непосредственно
+              до объекта «ПОД КЛЮЧ»
+            </p>
+            <button class="btn btn-primary btn-arrow-white">Подробнее</button>
+          </div>
+          <div class="col">
+            <img
+              class="side-img"
+              src="./img/png/Frame%20152.png"
+              alt=""
+              srcset=""
+            />
           </div>
         </div>
       </section>
@@ -608,10 +751,15 @@
     </footer>
     <!-- Add your site or application content here -->
 
-    <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+    <script src="./js/vendor/modernizr-3.11.2.min.js"></script>
+    <script src="./js/plugins.js"></script>
+    <script src="./js/main.js"></script>
 
+    <!-- <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        ItcSlider.getOrCreateInstance('#bottomSlider');
+      });
+    </script> -->
     <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <!--<script>-->
     <!--  window.ga = function () {-->
