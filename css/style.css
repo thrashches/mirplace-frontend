@@ -1,13 +1,13 @@
 main {
-  background-color: #EFF2F6;
+  background-color: #eff2f6;
   min-height: 75vh;
   padding: 12px 0;
 }
 
 .fixed-navbar__wrapper {
   width: 100%;
-  background: var(--dark, #0F1621);
-  color: var(--neutral-100, #EFF2F6);
+  background: var(--dark, #0f1621);
+  color: var(--neutral-100, #eff2f6);
 }
 
 .fixed-navbar {
@@ -24,7 +24,7 @@ main {
 }
 
 .fixed-navbar a {
-  color: #EFF2F6;
+  color: #eff2f6;
   text-decoration: none;
 }
 
@@ -188,18 +188,23 @@ main {
 }
 
 .btn-default {
-  background: var(--shades-white, #FFF);
-  color: var(--primary-600, #0085FF);
+  background: var(--shades-white, #fff);
+  color: var(--primary-600, #0085ff);
 }
 
 .btn-primary {
-  color: var(--shades-white, #FFF);
-  background: var(--primary-600, #0085FF);
+  color: var(--shades-white, #fff);
+  background: var(--primary-600, #0085ff);
 }
 
 .btn-secondary {
-  color: var(--primary-600, #0085FF);
-  background: var(--neutral-200, #E9ECF0);
+  color: var(--primary-600, #0085ff);
+  background: var(--neutral-200, #e9ecf0);
+}
+
+.btn-white {
+  background: #FFF;
+  color: var(--dark, #0F1621);
 }
 
 .btn-arrow {
@@ -236,11 +241,25 @@ main {
   padding-right: 32px !important;
 }
 
-
 .btn-arrow-blue::after {
   position: absolute;
   content: " ";
   background-image: url("../img/svg/arrows/arrow-blue.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  right: 4px;
+}
+
+.btn-arrow-black {
+  padding-right: 32px !important;
+}
+
+.btn-arrow-black::after {
+  position: absolute;
+  content: " ";
+  background-image: url("../img/svg/arrows/arrow-black.svg");
   background-size: contain;
   background-repeat: no-repeat;
   width: 24px;
@@ -264,7 +283,7 @@ main {
   padding: 32px;
   content: " ";
   border-radius: 20px;
-  background: #FFF;
+  background: #fff;
   background-size: 20%;
   background-position: bottom right 10%;
   background-repeat: no-repeat;
@@ -288,7 +307,7 @@ main {
 
 .card__header {
   margin: 0;
-  color: var(--dark, #0F1621);
+  color: var(--dark, #0f1621);
   font-variant-numeric: lining-nums proportional-nums;
   /* Desktop/22 Bold */
   font-family: Raleway;
@@ -300,7 +319,7 @@ main {
 
 .card__header__sm {
   margin: 0;
-  color: var(--dark, #0F1621);
+  color: var(--dark, #0f1621);
   font-variant-numeric: lining-nums proportional-nums;
   /* Desktop/16/16 Bold */
   font-family: Raleway;
@@ -340,7 +359,6 @@ main {
 }
 
 .card__stock {
-
   font-variant-numeric: lining-nums proportional-nums;
   /* Desktop/16/16 Semibold */
   font-family: Raleway;
@@ -351,7 +369,7 @@ main {
 }
 
 .card__stock__success {
-  color: #18CE09;
+  color: #18ce09;
 }
 
 .card__price {
@@ -371,7 +389,7 @@ main {
   display: block;
   margin: 20px 0;
   text-decoration: none;
-  color: var(--neutral-600, #7D7D7D);
+  color: var(--neutral-600, #7d7d7d);
   font-variant-numeric: lining-nums proportional-nums;
   /* Desktop/14/14 Regular */
   font-family: Raleway;
@@ -420,7 +438,7 @@ main {
 }
 
 footer {
-  background-color: #EFF2F6;
+  background-color: #eff2f6;
   width: 100%;
 }
 
@@ -459,7 +477,7 @@ footer {
 
 .footer__link {
   text-decoration: none;
-  color: var(--neutral-600, #7D7D7D);
+  color: var(--neutral-600, #7d7d7d);
   font-variant-numeric: lining-nums proportional-nums;
   /* Desktop/14/14 Regular */
   font-family: Raleway;
@@ -472,7 +490,7 @@ footer {
 .footer__contact {
   text-decoration: none;
   word-break: keep-all;
-  color: var(--dark, #0F1621);
+  color: var(--dark, #0f1621);
   text-align: right;
   font-variant-numeric: lining-nums proportional-nums;
   /* Desktop/14/14 Semibold */

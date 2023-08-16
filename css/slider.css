@@ -5,6 +5,111 @@
 }
 
 .main-slider {
+  padding: unset;
+  overflow: hidden;
   border-radius: 20px;
-  background: linear-gradient(90deg, #FF8008 0%, #FFC837 100%);
+  background: linear-gradient(90deg, #ff8008 0%, #ffc837 100%);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  position: relative;
+}
+
+.slider__header {
+  color: #fff;
+  font-variant-numeric: lining-nums proportional-nums;
+  /* Desktop/24 Bold */
+  font-family: Raleway;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%;
+}
+
+.slider__text-block {
+  padding-left: 70px;
+  padding-right: 16px;
+  padding-top: 32px;
+  padding-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.slider__text {
+  color: #fff;
+  font-variant-numeric: lining-nums proportional-nums;
+
+  /* Desktop/14/14 Semibold */
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+}
+
+.yellow {
+  color: #fff200 !important;
+}
+
+.slider__image-block {
+  background: radial-gradient(
+    circle at bottom right,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 50%
+  );
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.slider__image-block img {
+  width: 95%;
+  height: auto;
+}
+
+.slider__controls {
+  position: absolute;
+  box-sizing: border-box;
+  padding: 8px;
+  top: calc(50% - 32px);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider__controls__btn {
+  all: unset;
+  width: 30px;
+  height: 30px;
+  padding: 12px;
+  border-radius: 50%;
+  background: #fff;
+  transition: 250ms;
+}
+
+.slider__controls__btn:hover {
+  transform: scale(1.1);
+}
+
+.left {
+  content: " ";
+  background-image: url("../img/svg/btn/left.svg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: 32px;
+}
+
+.left:hover{
+  transform: scale(1.1);}
+
+.right {
+  content: " ";
+  background-image: url("../img/svg/btn/right.svg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: 32px;
 }
