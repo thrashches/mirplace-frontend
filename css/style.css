@@ -16,7 +16,7 @@ main {
   justify-content: space-between;
   align-items: center;
   font-variant-numeric: lining-nums proportional-nums;
-  /* Desktop/16/16 Regular */
+  padding: 16px;
   font-family: Raleway;
   font-size: 16px;
   font-style: normal;
@@ -80,9 +80,15 @@ main {
 }
 
 .main-navbar__wrapper {
-  /*height: 80px;*/
   padding: 12px;
   background-color: #ffffff;
+  z-index: 10;
+  width: 100%;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
 }
 
 .main-navbar {
@@ -142,17 +148,9 @@ main {
 }
 
 .search-input {
-  /*all: unset;*/
-  /*width: 100%;*/
-  /*cursor: text;*/
-  padding: 12px 12px 12px 20px;
-  /*border-radius: 12px;*/
-  /*background: var(--neutral-100, #EFF2F6);*/
-  /*font-family: Raleway;*/
-  /*font-size: 16px;*/
-  /*font-style: normal;*/
-  /*font-weight: 400;*/
-  /*line-height: 24px;*/
+  
+  padding: 12px 24px 12px 20px;
+  box-sizing: border-box;
 }
 
 .search-input__wrapper::after {
@@ -160,7 +158,7 @@ main {
   position: absolute;
   content: " ";
   top: calc(50% - 12px);
-  right: -5px;
+  right: 24px;
   width: 24px;
   height: 24px;
   vertical-align: middle;
@@ -361,6 +359,10 @@ main {
   background: #fff;
 }
 
+.card-with-img img {
+  align-self: center;
+}
+
 @media (min-width: 992px) {
   .card-with-img {
     display: grid;
@@ -511,9 +513,18 @@ main {
   padding-top: 20px;
   padding-bottom: 40px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column-reverse;
+  gap: 16px;
   justify-content: space-between;
   align-items: center;
+}
+
+@media (min-width: 768px) {
+  .pre-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 footer {
@@ -524,10 +535,24 @@ footer {
 .footer {
   padding-top: 32px;
   padding-bottom: 32px;
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-start; */
+}
+
+@media (min-width: 768px) {
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 992px) {
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
 
 .footer__col {
@@ -540,10 +565,20 @@ footer {
 
 .form-inline {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   gap: 16px;
 }
+
+@media (min-width: 576px) {
+  .form-inline {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 16px;
+  }
+}
+
 
 .icon-links {
   display: flex;
@@ -627,4 +662,5 @@ footer {
 .feature-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }

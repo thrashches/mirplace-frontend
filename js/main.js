@@ -1,3 +1,17 @@
+const yourNavigation = $(".main-navbar__wrapper");
+    stickyDiv = "sticky";
+    yourHeader = $('.fixed-navbar__wrapper').height();
+
+$(window).scroll(function() {
+  if( $(this).scrollTop() > yourHeader ) {
+    yourNavigation.addClass(stickyDiv);
+  } else {
+    yourNavigation.removeClass(stickyDiv);
+  }
+});
+
+
+
 class Slider {
   elemId = null;
   elem = null;
@@ -32,7 +46,7 @@ class Slider {
     this.sliderItems[this.prevItem].classList.toggle('prev');
     this.sliderItems[this.active].classList.toggle('active');
     this.sliderItems[this.nextItem].classList.toggle('next');
-    console.log(this.prevItem, this.active, this.nextItem);
+    // console.log(this.prevItem, this.active, this.nextItem);
     if (this.active + 1 < this.sliderItems.length && this.nextItem + 1 < this.sliderItems.length) {
       this.prevItem = this.active;
       this.active = this.nextItem;
