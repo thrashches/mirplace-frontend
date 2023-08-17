@@ -142,13 +142,19 @@ main {
 }
 
 .search-input__wrapper {
-  width: 100%;
-  position: relative;
-  padding: 0 12px;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .search-input__wrapper {
+    display: block;
+    width: 100%;
+    position: relative;
+    padding: 0 12px;
+  }
 }
 
 .search-input {
-  
   padding: 12px 24px 12px 20px;
   box-sizing: border-box;
 }
@@ -578,7 +584,6 @@ footer {
     gap: 16px;
   }
 }
-
 
 .icon-links {
   display: flex;
