@@ -1,830 +1,862 @@
 <!DOCTYPE html>
 <html class="no-js" lang="">
-  <head>
-    <meta charset="utf-8" />
-    <title></title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="utf-8"/>
+  <title></title>
+  <meta name="description" content=""/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <meta property="og:title" content="" />
-    <meta property="og:type" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:image" content="" />
+  <meta property="og:title" content=""/>
+  <meta property="og:type" content=""/>
+  <meta property="og:url" content=""/>
+  <meta property="og:image" content=""/>
 
-    <link rel="manifest" href="site.webmanifest" />
-    <link rel="apple-touch-icon" href="icon.png" />
-    <!-- Place favicon.ico in the root directory -->
+  <link rel="manifest" href="site.webmanifest"/>
+  <link rel="apple-touch-icon" href="icon.png"/>
+  <!-- Place favicon.ico in the root directory -->
 
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/slider.css" />
-    <link rel="stylesheet" href="css/its-slider.css" />
-    <script src="./js/itc-slider.js" defer></script>
-    <style>
+  <link rel="stylesheet" href="css/normalize.css"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/slider.css"/>
+  <link rel="stylesheet" href="css/its-slider.css"/>
+  <script src="./js/itc-slider.js" defer></script>
+  <style>
+    .itc-slider__item {
+      padding: 0 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
       .itc-slider__item {
-        padding: 0 8px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        flex: 0 0 33.333333333%;
+        max-width: 33.333333333%;
       }
-      @media (min-width: 768px) {
-        .itc-slider__item {
-          flex: 0 0 33.333333333%;
-          max-width: 33.333333333%;
-        }
-       }
-     @media (min-width: 992px) {
+    }
+
+    @media (min-width: 992px) {
       .itc-slider__item {
         flex: 0 0 16.6666666666%;
         max-width: 16.6666666666%;
       }
-     }
-    </style>
-    <meta name="theme-color" content="#fafafa" />
-  </head>
+    }
+  </style>
+  <meta name="theme-color" content="#fafafa"/>
+</head>
 
-  <body>
-    <header>
-      <nav class="fixed-navbar__wrapper">
-        <div class="container">
-          <div class="fixed-navbar">
-            <div>
-              <a class="icon-with-text icon-with-text__geo" href="#"
-                >Белгород</a
-              >
-            </div>
-            <div>
-              <ul class="fixed-navbar__links">
-                <li>
-                  <a href="#">Сервис и поддержка</a>
-                </li>
-                <li>
-                  <a href="#">Услуги</a>
-                </li>
-                <li>
-                  <a href="#">О компании</a>
-                </li>
-                <li>
-                  <a href="#">Доставка</a>
-                </li>
-                <li>
-                  <a href="#">Контакты</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <ul class="fixed-navbar__links fixed-navbar__contact">
-                <li>
-                  <a class="icon-with-text icon-with-text__email" href="#"
-                    >info@mirplace.ru</a
-                  >
-                </li>
-                <li>
-                  <a class="icon-with-text icon-with-text__phone" href="#"
-                    >+7 (910) 220-00-53</a
-                  >
-                </li>
-              </ul>
-            </div>
+<body>
+
+<div class="geo__modal__wrapper hidden" id="geoModal">
+  <div class="geo__modal">
+    <div class="geo__modal__header">
+      <h3 class="section-header">Выберите город</h3>
+      <button class="btn-close" onclick="toggleGeoModal();"></button>
+    </div>
+    <div class="modal__input__wrapper">
+      <input type="text" placeholder="Ваш город" id="modalSearch">
+    </div>
+    <div class="modal__input__search-results" id="searchResults">
+      <div class="search-result search-result__selected">Белгород</div>
+      <div class="search-result">Москва</div>
+      <div class="search-result">Санкт-Петербург</div>
+      <div class="search-result">Екатеринбург</div>
+      <div class="search-result">Казань</div>
+      <div class="search-result">Воронеж</div>
+      <div class="search-result">Ростов-на-Дону</div>
+      <div class="search-result">Пермь</div>
+      <div class="search-result">Самара</div>
+      <div class="search-result">Красноярск</div>
+    </div>
+  </div>
+</div>
+
+<header>
+  <nav class="fixed-navbar__wrapper">
+    <div class="container">
+      <div class="fixed-navbar">
+        <div class="link__wrapper">
+          <a class="icon-with-text icon-with-text__geo" href="#" id="geoLink"
+          >Белгород</a
+          >
+          <div class="link__popup hidden" id="currentGeo">
+            <p>Ваш город <b>Белгород</b>?</p>
+            <button class="btn btn-primary" onclick="toggleGeoPopup();">Все верно</button>
+            <button class="btn" onclick="toggleGeoModal(); toggleGeoPopup();">Выбрать другой</button>
           </div>
         </div>
-      </nav>
-      <nav class="main-navbar__wrapper">
-        <div class="container">
-          <div class="main-navbar">
-            <div>
-              <a class="logo" href="#"></a>
-            </div>
-            <div>
-              <button class="btn btn-primary btn-menu">Каталог</button>
-            </div>
-            <div class="search-input__wrapper">
-              <input
-                class="input search-input"
-                type="text"
-                name="search"
-                id="searchInput"
-                placeholder="Найти по названию или артикулу товара"
-              />
-            </div>
-            <div>
-              <ul class="main-navbar__icon-links">
-                <li><a href="#" class="icon-link icon-link__whatsapp"></a></li>
-                <li><a href="#" class="icon-link icon-link__telegram"></a></li>
-                <li><a href="#" class="icon-link icon-link__profile"></a></li>
-                <li>
-                  <a href="#" class="icon-link icon-link__shopping-cart"></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <main>
-      <section class="container main-slider__wrapper m-24">
-        <div class="card main-slider" id="slider">
-          <div class="slider__background"></div>
-          <div class="slider__item active" style="background: linear-gradient(90deg, #086bff 0%, #37caff 100%);">
-            <div class="slider__text-block">
-              <h2 class="slider__header">
-                <span class="yellow">Химические анкеры BIT</span> — лучшее решение
-                в современном строительстве!
-              </h2>
-              <p class="slider__text">
-                На 50% более высокая несущая способность и европейское качество
-                при более низкой цене, чем у аналогов
-              </p>
-              <button class="btn btn-white btn-arrow-black">Подробнее</button>
-            </div>
-            <div class="slider__image-block">
-              <img src="./img/png/chemical.png" alt="" />
-            </div>
-          </div>
-          <div class="slider__item next" style="background: linear-gradient(90deg, #ff8008 0%, #ffc837 100%);">
-            <div class="slider__text-block">
-              <h2 class="slider__header">
-                <span class="yellow">Химические анкеры BIT</span> — лучшее решение
-                в современном строительстве!
-              </h2>
-              <p class="slider__text">
-                На 50% более высокая несущая способность и европейское качество
-                при более низкой цене, чем у аналогов
-              </p>
-              <button class="btn btn-white btn-arrow-black">Подробнее</button>
-            </div>
-            <div class="slider__image-block">
-              <img src="./img/png/chemical.png" alt="" />
-            </div>
-          </div>
-          <div class="slider__item" style="background: linear-gradient(90deg, #08ff0c 0%, #3776ff 100%);">
-            <div class="slider__text-block">
-              <h2 class="slider__header">
-                <span class="yellow">Химические анкеры BIT</span> — лучшее решение
-                в современном строительстве!
-              </h2>
-              <p class="slider__text">
-                На 50% более высокая несущая способность и европейское качество
-                при более низкой цене, чем у аналогов
-              </p>
-              <button class="btn btn-white btn-arrow-black">Подробнее</button>
-            </div>
-            <div class="slider__image-block">
-              <img src="./img/png/chemical.png" alt="" />
-            </div>
-          </div>
-          <div class="slider__item prev" style="background: linear-gradient(90deg, #ff0808 0%, #ff8a37 100%);">
-            <div class="slider__text-block">
-              <h2 class="slider__header">
-                <span class="yellow">Химические анкеры BIT</span> — лучшее решение
-                в современном строительстве!
-              </h2>
-              <p class="slider__text">
-                На 50% более высокая несущая способность и европейское качество
-                при более низкой цене, чем у аналогов
-              </p>
-              <button class="btn btn-white btn-arrow-black">Подробнее</button>
-            </div>
-            <div class="slider__image-block">
-              <img src="./img/png/chemical.png" alt="" />
-            </div>
-          </div>
-          <div class="slider__controls">
-            <button class="slider__controls__btn left"></button>
-            <button class="slider__controls__btn right"></button>
-          </div>
-        </div>
-        <div class="card">
-          <div class="col">
-            <h3 class="section-header">Спросить эксперта</h3>
-            <p class="text-secondary">
-              Ответим на интересующие вас вопросы, поможем с выбором продукции
-            </p>
-          </div>
-          <div class="card__footer">
-            <button class="btn btn-primary btn-arrow-white">
-              Получить консультацию
-            </button>
-          </div>
-        </div>
-      </section>
-      <section class="container">
         <div>
-          <div class="flex s-btw m-24">
-            <h3 class="section-header">Популярные категории</h3>
-            <button class="btn btn-default btn-arrow">Смотреть все</button>
-          </div>
-          <div class="cards-3">
-            <div
-              class="card scale"
-              style="
-                background-image: url('./img/png/28011689a6cc219888275359a3479a1f.png');
-              "
-            >
-              <h4 class="card__header">Фасадные дюбели</h4>
-              <a href="#" class="card__link">Перейти в категорию</a>
-            </div>
-            <div
-              class="card scale"
-              style="
-                background-image: url('./img/png/28011689a6cc219888275359a3479a1f.png');
-              "
-            >
-              <h4 class="card__header">Механические анкеры</h4>
-              <a href="#" class="card__link">Перейти в категорию</a>
-            </div>
-            <div
-              class="card scale"
-              style="
-                background-image: url('./img/png/28011689a6cc219888275359a3479a1f.png');
-              "
-            >
-              <h4 class="card__header">Шурупы</h4>
-              <a href="#" class="card__link">Перейти в категорию</a>
-            </div>
-            <div
-              class="card scale"
-              style="
-                background-image: url('./img/png/28011689a6cc219888275359a3479a1f.png');
-              "
-            >
-              <h4 class="card__header">Фланцы и детали трубопроводов</h4>
-              <a href="#" class="card__link">Перейти в категорию</a>
-            </div>
-            <div
-              class="card scale"
-              style="
-                background-image: url('./img/png/28011689a6cc219888275359a3479a1f.png');
-              "
-            >
-              <h4 class="card__header">Сверла</h4>
-              <a href="#" class="card__link">Перейти в категорию</a>
-            </div>
-            <div
-              class="card scale"
-              style="
-                background-image: url('./img/png/28011689a6cc219888275359a3479a1f.png');
-              "
-            >
-              <h4 class="card__header">Крепление инженерных систем</h4>
-              <a href="#" class="card__link">Перейти в категорию</a>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="container m-48">
-        <div class="cards-4">
-          <div class="card p-16">
-            <div class="card__body">
-              <img
-                src="./img/svg/cards/Construction,%20Tools/Group.svg"
-                alt=""
-                width="48px"
-                height="48px"
-              />
-              <h5 class="card__header__sm">Широкий ассортимент</h5>
-              <p class="text-secondary">
-                Крупнейший поставщик крепежных изделий
-              </p>
-            </div>
-          </div>
-          <div class="card p-16">
-            <div class="card__body">
-              <img
-                src="./img/svg/cards/Business,%20Products/Group.svg"
-                alt=""
-                width="48px"
-                height="48px"
-              />
-              <h5 class="card__header__sm">Контроль качества и количества</h5>
-              <p class="text-secondary">Двойной внутренний контроль</p>
-            </div>
-          </div>
-          <div class="card p-16">
-            <div class="card__body">
-              <img
-                src="./img/svg/cards/Legal,%20Law/Group.svg"
-                alt=""
-                width="48px"
-                height="48px"
-              />
-              <h5 class="card__header__sm">Сертификаты и паспорта качества</h5>
-              <p class="text-secondary">Вся продукция сертифицирована</p>
-            </div>
-          </div>
-          <div class="card p-16">
-            <div class="card__body">
-              <img
-                src="./img/svg/cards/Money/Group.svg"
-                alt=""
-                width="48px"
-                height="48px"
-              />
-              <h5 class="card__header__sm">Выгодные условия</h5>
-              <p class="text-secondary">
-                Удобная система сотрудничества для каждого
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="container m-48">
-        <div class="flex s-btw m-24">
-          <h3 class="section-header">Хиты продаж</h3>
-          <button class="btn btn-default btn-arrow">Все товары</button>
-        </div>
-        <div class="cards-4">
-          <div class="card p-16">
-            <div class="card__img-wrapper">
-              <img
-                class="card__img"
-                src="./img/png/394f69b58cab91ec51810e52acd23ebc.png"
-                alt=""
-                srcset=""
-              />
-            </div>
-            <div class="card__body">
-              <p class="card__text">
-                Заклепка вытяжная для мягких материалов, стандартный бортик
-              </p>
-              <p class="card__stock card__stock__success">В наличии</p>
-              <p class="card__price">250,75 ₽/шт</p>
-            </div>
-            <div class="card__footer">
-              <button class="btn btn-primary">Заказать</button>
-            </div>
-          </div>
-          <div class="card p-16">
-            <div class="card__img-wrapper">
-              <img
-                class="card__img"
-                src="./img/png/b86fa041b80293b2e8a9b5ee3f4fb835.png"
-                alt=""
-                srcset=""
-              />
-            </div>
-            <div class="card__body">
-              <p class="card__text">
-                Заклепка вытяжная для мягких материалов, стандартный бортик
-              </p>
-              <p class="card__stock card__stock__success">В наличии</p>
-              <p class="card__price">250,75 ₽/шт</p>
-            </div>
-            <div class="card__footer">
-              <button class="btn btn-primary">Заказать</button>
-            </div>
-          </div>
-          <div class="card p-16">
-            <div class="card__img-wrapper">
-              <img
-                class="card__img"
-                src="./img/png/394f69b58cab91ec51810e52acd23ebc.png"
-                alt=""
-                srcset=""
-              />
-              <img
-                class="card__img__brand"
-                src="./img/png/67e71dff27221ac757f48d3ee9be7f45.png"
-              />
-            </div>
-            <div class="card__body">
-              <p class="card__text">
-                Заклепка вытяжная для мягких материалов, стандартный бортик
-              </p>
-              <p class="card__stock card__stock__success">В наличии</p>
-              <p class="card__price">250,75 ₽/шт</p>
-            </div>
-            <div class="card__footer">
-              <button class="btn btn-primary">Заказать</button>
-            </div>
-          </div>
-          <div class="card p-16">
-            <div class="card__img-wrapper">
-              <img
-                class="card__img"
-                src="./img/png/394f69b58cab91ec51810e52acd23ebc.png"
-                alt=""
-                srcset=""
-              />
-            </div>
-            <div class="card__body">
-              <p class="card__text">
-                Заклепка вытяжная для мягких материалов, стандартный бортик
-              </p>
-              <p class="card__stock card__stock__success">В наличии</p>
-              <p class="card__price">250,75 ₽/шт</p>
-            </div>
-            <div class="card__footer">
-              <button class="btn btn-primary">Заказать</button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="container">
-        <div class="card flex center">
-          <p class="text-middle">Рекламный баннер</p>
-        </div>
-      </section>
-      <section class="container m-48">
-        <!--    <div class="flex s-btw">-->
-        <!--      <h3 class="section-header">Хиты продаж</h3>-->
-        <!--      <button class="btn btn-default btn-arrow">Все товары</button>-->
-        <!--    </div>-->
-        <div class="cards-4">
-          <div class="card p-16">
-            <div class="card__img-wrapper">
-              <img
-                class="card__img"
-                src="./img/png/394f69b58cab91ec51810e52acd23ebc.png"
-                alt=""
-                srcset=""
-              />
-            </div>
-            <div class="card__body">
-              <p class="card__text">
-                Заклепка вытяжная для мягких материалов, стандартный бортик
-              </p>
-              <p class="card__stock card__stock__success">В наличии</p>
-              <p class="card__price">250,75 ₽/шт</p>
-            </div>
-            <div class="card__footer">
-              <button class="btn btn-primary">Заказать</button>
-            </div>
-          </div>
-          <div class="card p-16">
-            <div class="card__img-wrapper">
-              <img
-                class="card__img"
-                src="./img/png/b86fa041b80293b2e8a9b5ee3f4fb835.png"
-                alt=""
-                srcset=""
-              />
-            </div>
-            <div class="card__body">
-              <p class="card__text">
-                Заклепка вытяжная для мягких материалов, стандартный бортик
-              </p>
-              <p class="card__stock card__stock__success">В наличии</p>
-              <p class="card__price">250,75 ₽/шт</p>
-            </div>
-            <div class="card__footer">
-              <button class="btn btn-primary">Заказать</button>
-            </div>
-          </div>
-          <div class="card p-16">
-            <div class="card__img-wrapper">
-              <img
-                class="card__img"
-                src="./img/png/394f69b58cab91ec51810e52acd23ebc.png"
-                alt=""
-                srcset=""
-              />
-              <img
-                class="card__img__brand"
-                src="./img/png/67e71dff27221ac757f48d3ee9be7f45.png"
-              />
-            </div>
-            <div class="card__body">
-              <p class="card__text">
-                Заклепка вытяжная для мягких материалов, стандартный бортик
-              </p>
-              <p class="card__stock card__stock__success">В наличии</p>
-              <p class="card__price">250,75 ₽/шт</p>
-            </div>
-            <div class="card__footer">
-              <button class="btn btn-primary">Заказать</button>
-            </div>
-          </div>
-          <div class="card p-16">
-            <div class="card__img-wrapper">
-              <img
-                class="card__img"
-                src="./img/png/394f69b58cab91ec51810e52acd23ebc.png"
-                alt=""
-                srcset=""
-              />
-            </div>
-            <div class="card__body">
-              <p class="card__text">
-                Заклепка вытяжная для мягких материалов, стандартный бортик
-              </p>
-              <p class="card__stock card__stock__success">В наличии</p>
-              <p class="card__price">250,75 ₽/шт</p>
-            </div>
-            <div class="card__footer">
-              <button class="btn btn-primary">Заказать</button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="container m-48">
-        <div class="card-with-img">
-          <div class="col p-32">
-            <h3 class="section-header">12 лет успешной работы</h3>
-            <p>
-              ООО ТПК “МИР” надежный поставщик профессионального высокопрочного
-              крепежа и метизов по оптимальным ценам
-            </p>
-            <div class="feature-grid">
-              <div>
-                <h4>Высокое качество крепежа</h4>
-                <p class="text-secondary">
-                  Высокое качество, подтвержденное сертификатами
-                </p>
-              </div>
-              <div>
-                <h4>Техническая поддержка</h4>
-                <p class="text-secondary">
-                  Опытные менеджеры самой высокой квалификации
-                </p>
-              </div>
-              <div>
-                <h4>Импортозамещение крепежа</h4>
-                <p class="text-secondary">
-                  Целый ряд преимуществ по сравнению с зарубежными аналогами
-                </p>
-              </div>
-              <div>
-                <h4>Программа лояльности</h4>
-                <p class="text-secondary">
-                  Дополнительные выгоды с нашей программой лояльности
-                </p>
-              </div>
-            </div>
-            <div class="flex g-16">
-              <button class="btn btn-primary btn-arrow-white">
-                Получить консультацию
-              </button>
-              <button class="btn btn-secondary btn-arrow-blue">
-                Перейти в раздел
-              </button>
-            </div>
-          </div>
-          <div class="col p-32">
-            <img
-              src="./img/svg/illustrations/reshot-illustration-delivery-checklist-75NPJ6ELQK%201.svg"
-              alt=""
-              srcset=""
-            />
-          </div>
-        </div>
-      </section>
-      <section class="container m-48 slider__wrapper">
-        <h3 class="section-header m-24">Официальные дистрибьюторы</h3>
-        <div
-          class="itc-slider"
-          data-slider="itc-slider"
-          data-loop="false"
-          data-autoplay="false"
-        >
-          <div class="itc-slider__wrapper">
-            <div class="itc-slider__items">
-              <div class="itc-slider__item">
-                <!-- Контент 1 слайда -->
-                <div class="card itc-slider__img__wrapper">
-                  <img
-                    class="itc-slider__img"
-                    src="./img/png/logos/bralo.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="itc-slider__item">
-                <!-- Контент 2 слайда -->
-                <div class="card itc-slider__img__wrapper">
-                  <img
-                    class="itc-slider__img"
-                    src="./img/png/logos/fasty.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="itc-slider__item">
-                <!-- Контент 3 слайда -->
-                <div class="card itc-slider__img__wrapper">
-                  <img
-                    class="itc-slider__img"
-                    src="./img/png/logos/holdex.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="itc-slider__item">
-                <!-- Контент 4 слайда -->
-                <div class="card itc-slider__img__wrapper">
-                  <img
-                    class="itc-slider__img"
-                    src="./img/png/logos/mkt.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="itc-slider__item">
-                <!-- Контент 5 слайда -->
-                <div class="card itc-slider__img__wrapper">
-                  <img
-                    class="itc-slider__img"
-                    src="./img/png/logos/mungo.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="itc-slider__item">
-                <!-- Контент 1 слайда -->
-                <div class="card  itc-slider__img__wrapper">
-                  <img
-                    class="itc-slider__img"
-                    src="./img/png/logos/holdex.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="itc-slider__item">
-                <!-- Контент 2 слайда -->
-                <div class="card  itc-slider__img__wrapper">
-                  <img
-                    class="itc-slider__img"
-                    src="./img/png/logos/fasty.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="itc-slider__item">
-                <!-- Контент 3 слайда -->
-                <div class="card itc-slider__img__wrapper">
-                  <img
-                    class="itc-slider__img"
-                    src="./img/png/logos/mungo.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="itc-slider__item">
-                <!-- Контент 4 слайда -->
-                <div class="card itc-slider__img__wrapper">
-                  <img
-                    class="itc-slider__img"
-                    src="./img/png/logos/mkt.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="itc-slider__item">
-                <!-- Контент 5 слайда -->
-                <div class="card itc-slider__img__wrapper">
-                  <img
-                    class="itc-slider__img"
-                    src="./img/png/logos/bralo.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <button class="itc-slider__btn itc-slider__btn_prev left"></button>
-          <button class="itc-slider__btn itc-slider__btn_next right"></button>
-        </div>
-      </section>
-
-      <section class="container m-48">
-        <div class="card-with-img">
-          <div class="col p-32">
-            <h3 class="section-header">Оперативная доставка до объекта</h3>
-            <p>
-              Доставка до терминала транспортной компании или непосредственно
-              до объекта «ПОД КЛЮЧ»
-            </p>
-            <button class="btn btn-primary btn-arrow-white">Подробнее</button>
-          </div>
-          <div class="col">
-            <img
-              class="side-img"
-              src="./img/png/Frame%20152.png"
-              alt=""
-              srcset=""
-            />
-          </div>
-        </div>
-      </section>
-    </main>
-    <footer>
-      <div class="pre-footer-wrapper">
-        <section class="pre-footer container">
-          <div class="col">
-            <h3 class="section-header">
-              Получайте выгодные предложения первыми!
-            </h3>
-            <form class="form" action="" method="post">
-              <div class="form-inline">
-                <input
-                  type="email"
-                  name="email"
-                  class="input"
-                  placeholder="Введите ваш e-mail"
-                  required
-                />
-                <button class="btn btn-primary btn-arrow-white">
-                  Подписаться
-                </button>
-              </div>
-              <div>
-                <label class="checkbox__label" for="accept">
-                  <input
-                    class="checkbox"
-                    type="checkbox"
-                    name="accept"
-                    id="accept"
-                    required
-                  />
-                  <span class="checkbox__fake"></span>
-                  Соглашаюсь с
-                  <a class="text-secondary" href="#">политикой безопасности</a>
-                  и подтверждаю прочтение
-                </label>
-
-                <!--            <label for="accept" class="checkbox__label">-->
-                <!--              <input type="checkbox" name="accept" id="accept" class="checkbox">-->
-                <!--              -->
-                <!--              I agree to the processing of personal data-->
-                <!--            </label>-->
-              </div>
-            </form>
-          </div>
-          <div>
-            <img src="./img/svg/interface/mailBig.svg" alt="" srcset="" />
-          </div>
-        </section>
-      </div>
-
-      <section class="footer container">
-        <div class="footer__col">
-          <a class="logo" href="#"></a>
-          <p class="text-secondary">ООО</p>
-          <p class="text-secondary">ИНН</p>
-          <p class="text-secondary">ОГРН</p>
-          <ul class="icon-links">
-            <li><a href="#" class="icon-link icon-link__whatsapp"></a></li>
-            <li><a href="#" class="icon-link icon-link__telegram"></a></li>
+          <ul class="fixed-navbar__links">
+            <li>
+              <a href="#">Сервис и поддержка</a>
+            </li>
+            <li>
+              <a href="#">Услуги</a>
+            </li>
+            <li>
+              <a href="#">О компании</a>
+            </li>
+            <li>
+              <a href="#">Доставка</a>
+            </li>
+            <li>
+              <a href="#">Контакты</a>
+            </li>
           </ul>
         </div>
-        <div class="footer__col">
-          <h4 class="col__header">О компании</h4>
-          <a href="#" class="footer__link">Почему мы?</a>
-          <a href="#" class="footer__link">Доставка</a>
-          <a href="#" class="footer__link">Оплата</a>
-          <a href="#" class="footer__link">Производители</a>
-          <a href="#" class="footer__link">Правовая информация</a>
+        <div>
+          <ul class="fixed-navbar__links fixed-navbar__contact">
+            <li>
+              <a class="icon-with-text icon-with-text__email" href="#"
+              >info@mirplace.ru</a
+              >
+            </li>
+            <li>
+              <a class="icon-with-text icon-with-text__phone" href="#"
+              >+7 (910) 220-00-53</a
+              >
+            </li>
+          </ul>
         </div>
-        <div class="footer__col">
-          <h4 class="col__header">Информация</h4>
-          <a href="#" class="footer__link"
-            >Каталоги, сборщики, альбомы применений</a
-          >
-          <a href="#" class="footer__link">Расчетные программы</a>
-          <a href="#" class="footer__link">Чертежи продукции</a>
-          <a href="#" class="footer__link">Стандарты организации</a>
-          <a href="#" class="footer__link">Сертификация</a>
-          <a href="#" class="footer__link">Регламенты работ анкеров МКТ</a>
+      </div>
+    </div>
+  </nav>
+  <nav class="main-navbar__wrapper">
+    <div class="container">
+      <div class="main-navbar">
+        <div>
+          <a class="logo" href="#"></a>
         </div>
-        <div class="footer__col">
-          <h4 class="col__header">Контакты</h4>
-          <a href="#" class="footer__contact footer__contact__email"
-            >info@mirplace.ru</a
-          >
-          <a href="#" class="footer__contact footer__contact__phone"
-            >+7 (910) 220-00-53</a
-          >
-          <a href="#" class="footer__contact"
-            >г. Белгород, ул. Рабочая, д. 2Д</a
-          >
+        <div>
+          <button class="btn btn-primary btn-menu">Каталог</button>
         </div>
-      </section>
-    </footer>
-    <!-- Add your site or application content here -->
+        <div class="search-input__wrapper">
+          <input
+            class="input search-input"
+            type="text"
+            name="search"
+            id="searchInput"
+            placeholder="Найти по названию или артикулу товара"
+          />
+        </div>
+        <div>
+          <ul class="main-navbar__icon-links">
+            <li><a href="#" class="icon-link icon-link__whatsapp"></a></li>
+            <li><a href="#" class="icon-link icon-link__telegram"></a></li>
+            <li><a href="#" class="icon-link icon-link__profile"></a></li>
+            <li>
+              <a href="#" class="icon-link icon-link__shopping-cart"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<main>
+  <section class="container main-slider__wrapper m-24">
+    <div class="card main-slider" id="slider">
+      <div class="slider__background"></div>
+      <div class="slider__item active" style="background: linear-gradient(90deg, #086bff 0%, #37caff 100%);">
+        <div class="slider__text-block">
+          <h2 class="slider__header">
+            <span class="yellow">Химические анкеры BIT</span> — лучшее решение
+            в современном строительстве!
+          </h2>
+          <p class="slider__text">
+            На 50% более высокая несущая способность и европейское качество
+            при более низкой цене, чем у аналогов
+          </p>
+          <button class="btn btn-white btn-arrow-black">Подробнее</button>
+        </div>
+        <div class="slider__image-block">
+          <img src="./img/png/chemical.png" alt=""/>
+        </div>
+      </div>
+      <div class="slider__item next" style="background: linear-gradient(90deg, #ff8008 0%, #ffc837 100%);">
+        <div class="slider__text-block">
+          <h2 class="slider__header">
+            <span class="yellow">Химические анкеры BIT</span> — лучшее решение
+            в современном строительстве!
+          </h2>
+          <p class="slider__text">
+            На 50% более высокая несущая способность и европейское качество
+            при более низкой цене, чем у аналогов
+          </p>
+          <button class="btn btn-white btn-arrow-black">Подробнее</button>
+        </div>
+        <div class="slider__image-block">
+          <img src="./img/png/chemical.png" alt=""/>
+        </div>
+      </div>
+      <div class="slider__item" style="background: linear-gradient(90deg, #08ff0c 0%, #3776ff 100%);">
+        <div class="slider__text-block">
+          <h2 class="slider__header">
+            <span class="yellow">Химические анкеры BIT</span> — лучшее решение
+            в современном строительстве!
+          </h2>
+          <p class="slider__text">
+            На 50% более высокая несущая способность и европейское качество
+            при более низкой цене, чем у аналогов
+          </p>
+          <button class="btn btn-white btn-arrow-black">Подробнее</button>
+        </div>
+        <div class="slider__image-block">
+          <img src="./img/png/chemical.png" alt=""/>
+        </div>
+      </div>
+      <div class="slider__item prev" style="background: linear-gradient(90deg, #ff0808 0%, #ff8a37 100%);">
+        <div class="slider__text-block">
+          <h2 class="slider__header">
+            <span class="yellow">Химические анкеры BIT</span> — лучшее решение
+            в современном строительстве!
+          </h2>
+          <p class="slider__text">
+            На 50% более высокая несущая способность и европейское качество
+            при более низкой цене, чем у аналогов
+          </p>
+          <button class="btn btn-white btn-arrow-black">Подробнее</button>
+        </div>
+        <div class="slider__image-block">
+          <img src="./img/png/chemical.png" alt=""/>
+        </div>
+      </div>
+      <div class="slider__controls">
+        <button class="slider__controls__btn left"></button>
+        <button class="slider__controls__btn right"></button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="col">
+        <h3 class="section-header">Спросить эксперта</h3>
+        <p class="text-secondary">
+          Ответим на интересующие вас вопросы, поможем с выбором продукции
+        </p>
+      </div>
+      <div class="card__footer">
+        <button class="btn btn-primary btn-arrow-white">
+          Получить консультацию
+        </button>
+      </div>
+    </div>
+  </section>
+  <section class="container">
+    <div>
+      <div class="flex s-btw m-24">
+        <h3 class="section-header">Популярные категории</h3>
+        <button class="btn btn-default btn-arrow">Смотреть все</button>
+      </div>
+      <div class="cards-3">
+        <div
+          class="card scale"
+          style="
+                background-image: url('./img/png/28011689a6cc219888275359a3479a1f.png');
+              "
+        >
+          <h4 class="card__header">Фасадные дюбели</h4>
+          <a href="#" class="card__link">Перейти в категорию</a>
+        </div>
+        <div
+          class="card scale"
+          style="
+                background-image: url('./img/png/28011689a6cc219888275359a3479a1f.png');
+              "
+        >
+          <h4 class="card__header">Механические анкеры</h4>
+          <a href="#" class="card__link">Перейти в категорию</a>
+        </div>
+        <div
+          class="card scale"
+          style="
+                background-image: url('./img/png/28011689a6cc219888275359a3479a1f.png');
+              "
+        >
+          <h4 class="card__header">Шурупы</h4>
+          <a href="#" class="card__link">Перейти в категорию</a>
+        </div>
+        <div
+          class="card scale"
+          style="
+                background-image: url('./img/png/28011689a6cc219888275359a3479a1f.png');
+              "
+        >
+          <h4 class="card__header">Фланцы и детали трубопроводов</h4>
+          <a href="#" class="card__link">Перейти в категорию</a>
+        </div>
+        <div
+          class="card scale"
+          style="
+                background-image: url('./img/png/28011689a6cc219888275359a3479a1f.png');
+              "
+        >
+          <h4 class="card__header">Сверла</h4>
+          <a href="#" class="card__link">Перейти в категорию</a>
+        </div>
+        <div
+          class="card scale"
+          style="
+                background-image: url('./img/png/28011689a6cc219888275359a3479a1f.png');
+              "
+        >
+          <h4 class="card__header">Крепление инженерных систем</h4>
+          <a href="#" class="card__link">Перейти в категорию</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="container m-48">
+    <div class="cards-4">
+      <div class="card p-16">
+        <div class="card__body">
+          <img
+            src="./img/svg/cards/Construction,%20Tools/Group.svg"
+            alt=""
+            width="48px"
+            height="48px"
+          />
+          <h5 class="card__header__sm">Широкий ассортимент</h5>
+          <p class="text-secondary">
+            Крупнейший поставщик крепежных изделий
+          </p>
+        </div>
+      </div>
+      <div class="card p-16">
+        <div class="card__body">
+          <img
+            src="./img/svg/cards/Business,%20Products/Group.svg"
+            alt=""
+            width="48px"
+            height="48px"
+          />
+          <h5 class="card__header__sm">Контроль качества и количества</h5>
+          <p class="text-secondary">Двойной внутренний контроль</p>
+        </div>
+      </div>
+      <div class="card p-16">
+        <div class="card__body">
+          <img
+            src="./img/svg/cards/Legal,%20Law/Group.svg"
+            alt=""
+            width="48px"
+            height="48px"
+          />
+          <h5 class="card__header__sm">Сертификаты и паспорта качества</h5>
+          <p class="text-secondary">Вся продукция сертифицирована</p>
+        </div>
+      </div>
+      <div class="card p-16">
+        <div class="card__body">
+          <img
+            src="./img/svg/cards/Money/Group.svg"
+            alt=""
+            width="48px"
+            height="48px"
+          />
+          <h5 class="card__header__sm">Выгодные условия</h5>
+          <p class="text-secondary">
+            Удобная система сотрудничества для каждого
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="container m-48">
+    <div class="flex s-btw m-24">
+      <h3 class="section-header">Хиты продаж</h3>
+      <button class="btn btn-default btn-arrow">Все товары</button>
+    </div>
+    <div class="cards-4">
+      <div class="card p-16">
+        <div class="card__img-wrapper">
+          <img
+            class="card__img"
+            src="./img/png/394f69b58cab91ec51810e52acd23ebc.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div class="card__body">
+          <p class="card__text">
+            Заклепка вытяжная для мягких материалов, стандартный бортик
+          </p>
+          <p class="card__stock card__stock__success">В наличии</p>
+          <p class="card__price">250,75 ₽/шт</p>
+        </div>
+        <div class="card__footer">
+          <button class="btn btn-primary">Заказать</button>
+        </div>
+      </div>
+      <div class="card p-16">
+        <div class="card__img-wrapper">
+          <img
+            class="card__img"
+            src="./img/png/b86fa041b80293b2e8a9b5ee3f4fb835.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div class="card__body">
+          <p class="card__text">
+            Заклепка вытяжная для мягких материалов, стандартный бортик
+          </p>
+          <p class="card__stock card__stock__success">В наличии</p>
+          <p class="card__price">250,75 ₽/шт</p>
+        </div>
+        <div class="card__footer">
+          <button class="btn btn-primary">Заказать</button>
+        </div>
+      </div>
+      <div class="card p-16">
+        <div class="card__img-wrapper">
+          <img
+            class="card__img"
+            src="./img/png/394f69b58cab91ec51810e52acd23ebc.png"
+            alt=""
+            srcset=""
+          />
+          <img
+            class="card__img__brand"
+            src="./img/png/67e71dff27221ac757f48d3ee9be7f45.png"
+          />
+        </div>
+        <div class="card__body">
+          <p class="card__text">
+            Заклепка вытяжная для мягких материалов, стандартный бортик
+          </p>
+          <p class="card__stock card__stock__success">В наличии</p>
+          <p class="card__price">250,75 ₽/шт</p>
+        </div>
+        <div class="card__footer">
+          <button class="btn btn-primary">Заказать</button>
+        </div>
+      </div>
+      <div class="card p-16">
+        <div class="card__img-wrapper">
+          <img
+            class="card__img"
+            src="./img/png/394f69b58cab91ec51810e52acd23ebc.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div class="card__body">
+          <p class="card__text">
+            Заклепка вытяжная для мягких материалов, стандартный бортик
+          </p>
+          <p class="card__stock card__stock__success">В наличии</p>
+          <p class="card__price">250,75 ₽/шт</p>
+        </div>
+        <div class="card__footer">
+          <button class="btn btn-primary">Заказать</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="container">
+    <div class="card flex center">
+      <p class="text-middle">Рекламный баннер</p>
+    </div>
+  </section>
+  <section class="container m-48">
+    <!--    <div class="flex s-btw">-->
+    <!--      <h3 class="section-header">Хиты продаж</h3>-->
+    <!--      <button class="btn btn-default btn-arrow">Все товары</button>-->
+    <!--    </div>-->
+    <div class="cards-4">
+      <div class="card p-16">
+        <div class="card__img-wrapper">
+          <img
+            class="card__img"
+            src="./img/png/394f69b58cab91ec51810e52acd23ebc.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div class="card__body">
+          <p class="card__text">
+            Заклепка вытяжная для мягких материалов, стандартный бортик
+          </p>
+          <p class="card__stock card__stock__success">В наличии</p>
+          <p class="card__price">250,75 ₽/шт</p>
+        </div>
+        <div class="card__footer">
+          <button class="btn btn-primary">Заказать</button>
+        </div>
+      </div>
+      <div class="card p-16">
+        <div class="card__img-wrapper">
+          <img
+            class="card__img"
+            src="./img/png/b86fa041b80293b2e8a9b5ee3f4fb835.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div class="card__body">
+          <p class="card__text">
+            Заклепка вытяжная для мягких материалов, стандартный бортик
+          </p>
+          <p class="card__stock card__stock__success">В наличии</p>
+          <p class="card__price">250,75 ₽/шт</p>
+        </div>
+        <div class="card__footer">
+          <button class="btn btn-primary">Заказать</button>
+        </div>
+      </div>
+      <div class="card p-16">
+        <div class="card__img-wrapper">
+          <img
+            class="card__img"
+            src="./img/png/394f69b58cab91ec51810e52acd23ebc.png"
+            alt=""
+            srcset=""
+          />
+          <img
+            class="card__img__brand"
+            src="./img/png/67e71dff27221ac757f48d3ee9be7f45.png"
+          />
+        </div>
+        <div class="card__body">
+          <p class="card__text">
+            Заклепка вытяжная для мягких материалов, стандартный бортик
+          </p>
+          <p class="card__stock card__stock__success">В наличии</p>
+          <p class="card__price">250,75 ₽/шт</p>
+        </div>
+        <div class="card__footer">
+          <button class="btn btn-primary">Заказать</button>
+        </div>
+      </div>
+      <div class="card p-16">
+        <div class="card__img-wrapper">
+          <img
+            class="card__img"
+            src="./img/png/394f69b58cab91ec51810e52acd23ebc.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div class="card__body">
+          <p class="card__text">
+            Заклепка вытяжная для мягких материалов, стандартный бортик
+          </p>
+          <p class="card__stock card__stock__success">В наличии</p>
+          <p class="card__price">250,75 ₽/шт</p>
+        </div>
+        <div class="card__footer">
+          <button class="btn btn-primary">Заказать</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="container m-48">
+    <div class="card-with-img">
+      <div class="col p-32">
+        <h3 class="section-header">12 лет успешной работы</h3>
+        <p>
+          ООО ТПК “МИР” надежный поставщик профессионального высокопрочного
+          крепежа и метизов по оптимальным ценам
+        </p>
+        <div class="feature-grid">
+          <div>
+            <h4>Высокое качество крепежа</h4>
+            <p class="text-secondary">
+              Высокое качество, подтвержденное сертификатами
+            </p>
+          </div>
+          <div>
+            <h4>Техническая поддержка</h4>
+            <p class="text-secondary">
+              Опытные менеджеры самой высокой квалификации
+            </p>
+          </div>
+          <div>
+            <h4>Импортозамещение крепежа</h4>
+            <p class="text-secondary">
+              Целый ряд преимуществ по сравнению с зарубежными аналогами
+            </p>
+          </div>
+          <div>
+            <h4>Программа лояльности</h4>
+            <p class="text-secondary">
+              Дополнительные выгоды с нашей программой лояльности
+            </p>
+          </div>
+        </div>
+        <div class="flex g-16">
+          <button class="btn btn-primary btn-arrow-white">
+            Получить консультацию
+          </button>
+          <button class="btn btn-secondary btn-arrow-blue">
+            Перейти в раздел
+          </button>
+        </div>
+      </div>
+      <div class="col p-32">
+        <img
+          src="./img/svg/illustrations/reshot-illustration-delivery-checklist-75NPJ6ELQK%201.svg"
+          alt=""
+          srcset=""
+        />
+      </div>
+    </div>
+  </section>
+  <section class="container m-48 slider__wrapper">
+    <h3 class="section-header m-24">Официальные дистрибьюторы</h3>
+    <div
+      class="itc-slider"
+      data-slider="itc-slider"
+      data-loop="false"
+      data-autoplay="false"
+    >
+      <div class="itc-slider__wrapper">
+        <div class="itc-slider__items">
+          <div class="itc-slider__item">
+            <!-- Контент 1 слайда -->
+            <div class="card itc-slider__img__wrapper">
+              <img
+                class="itc-slider__img"
+                src="./img/png/logos/bralo.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="itc-slider__item">
+            <!-- Контент 2 слайда -->
+            <div class="card itc-slider__img__wrapper">
+              <img
+                class="itc-slider__img"
+                src="./img/png/logos/fasty.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="itc-slider__item">
+            <!-- Контент 3 слайда -->
+            <div class="card itc-slider__img__wrapper">
+              <img
+                class="itc-slider__img"
+                src="./img/png/logos/holdex.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="itc-slider__item">
+            <!-- Контент 4 слайда -->
+            <div class="card itc-slider__img__wrapper">
+              <img
+                class="itc-slider__img"
+                src="./img/png/logos/mkt.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="itc-slider__item">
+            <!-- Контент 5 слайда -->
+            <div class="card itc-slider__img__wrapper">
+              <img
+                class="itc-slider__img"
+                src="./img/png/logos/mungo.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="itc-slider__item">
+            <!-- Контент 1 слайда -->
+            <div class="card  itc-slider__img__wrapper">
+              <img
+                class="itc-slider__img"
+                src="./img/png/logos/holdex.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="itc-slider__item">
+            <!-- Контент 2 слайда -->
+            <div class="card  itc-slider__img__wrapper">
+              <img
+                class="itc-slider__img"
+                src="./img/png/logos/fasty.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="itc-slider__item">
+            <!-- Контент 3 слайда -->
+            <div class="card itc-slider__img__wrapper">
+              <img
+                class="itc-slider__img"
+                src="./img/png/logos/mungo.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="itc-slider__item">
+            <!-- Контент 4 слайда -->
+            <div class="card itc-slider__img__wrapper">
+              <img
+                class="itc-slider__img"
+                src="./img/png/logos/mkt.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="itc-slider__item">
+            <!-- Контент 5 слайда -->
+            <div class="card itc-slider__img__wrapper">
+              <img
+                class="itc-slider__img"
+                src="./img/png/logos/bralo.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="itc-slider__btn itc-slider__btn_prev left"></button>
+      <button class="itc-slider__btn itc-slider__btn_next right"></button>
+    </div>
+  </section>
 
-    <script src="./js/vendor/modernizr-3.11.2.min.js"></script>
-    <script src="./js/vendor/jquery-3.7.0.js"></script>
-    <script src="./js/plugins.js"></script>
-    <script src="./js/main.js"></script>
+  <section class="container m-48">
+    <div class="card-with-img">
+      <div class="col p-32">
+        <h3 class="section-header">Оперативная доставка до объекта</h3>
+        <p>
+          Доставка до терминала транспортной компании или непосредственно
+          до объекта «ПОД КЛЮЧ»
+        </p>
+        <button class="btn btn-primary btn-arrow-white">Подробнее</button>
+      </div>
+      <div class="col">
+        <img
+          class="side-img"
+          src="./img/png/Frame%20152.png"
+          alt=""
+          srcset=""
+        />
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="pre-footer-wrapper">
+    <section class="pre-footer container">
+      <div class="col">
+        <h3 class="section-header">
+          Получайте выгодные предложения первыми!
+        </h3>
+        <form class="form" action="" method="post">
+          <div class="form-inline">
+            <input
+              type="email"
+              name="email"
+              class="input"
+              placeholder="Введите ваш e-mail"
+              required
+            />
+            <button class="btn btn-primary btn-arrow-white">
+              Подписаться
+            </button>
+          </div>
+          <div>
+            <label class="checkbox__label" for="accept">
+              <input
+                class="checkbox"
+                type="checkbox"
+                name="accept"
+                id="accept"
+                required
+              />
+              <span class="checkbox__fake"></span>
+              Соглашаюсь с
+              <a class="text-secondary" href="#">политикой безопасности</a>
+              и подтверждаю прочтение
+            </label>
 
-    <!-- <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        ItcSlider.getOrCreateInstance('#bottomSlider');
-      });
-    </script> -->
-    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-    <!--<script>-->
-    <!--  window.ga = function () {-->
-    <!--    ga.q.push(arguments)-->
-    <!--  };-->
-    <!--  ga.q = [];-->
-    <!--  ga.l = +new Date;-->
-    <!--  ga('create', 'UA-XXXXX-Y', 'auto');-->
-    <!--  ga('set', 'anonymizeIp', true);-->
-    <!--  ga('set', 'transport', 'beacon');-->
-    <!--  ga('send', 'pageview')-->
-    <!--</script>-->
-    <!--<script src="https://www.google-analytics.com/analytics.js" async></script>-->
-  </body>
+            <!--            <label for="accept" class="checkbox__label">-->
+            <!--              <input type="checkbox" name="accept" id="accept" class="checkbox">-->
+            <!--              -->
+            <!--              I agree to the processing of personal data-->
+            <!--            </label>-->
+          </div>
+        </form>
+      </div>
+      <div>
+        <img src="./img/svg/interface/mailBig.svg" alt="" srcset=""/>
+      </div>
+    </section>
+  </div>
+
+  <section class="footer container">
+    <div class="footer__col">
+      <a class="logo" href="#"></a>
+      <p class="text-secondary">ООО</p>
+      <p class="text-secondary">ИНН</p>
+      <p class="text-secondary">ОГРН</p>
+      <ul class="icon-links">
+        <li><a href="#" class="icon-link icon-link__whatsapp"></a></li>
+        <li><a href="#" class="icon-link icon-link__telegram"></a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4 class="col__header">О компании</h4>
+      <a href="#" class="footer__link">Почему мы?</a>
+      <a href="#" class="footer__link">Доставка</a>
+      <a href="#" class="footer__link">Оплата</a>
+      <a href="#" class="footer__link">Производители</a>
+      <a href="#" class="footer__link">Правовая информация</a>
+    </div>
+    <div class="footer__col">
+      <h4 class="col__header">Информация</h4>
+      <a href="#" class="footer__link"
+      >Каталоги, сборщики, альбомы применений</a
+      >
+      <a href="#" class="footer__link">Расчетные программы</a>
+      <a href="#" class="footer__link">Чертежи продукции</a>
+      <a href="#" class="footer__link">Стандарты организации</a>
+      <a href="#" class="footer__link">Сертификация</a>
+      <a href="#" class="footer__link">Регламенты работ анкеров МКТ</a>
+    </div>
+    <div class="footer__col">
+      <h4 class="col__header">Контакты</h4>
+      <a href="#" class="footer__contact footer__contact__email"
+      >info@mirplace.ru</a
+      >
+      <a href="#" class="footer__contact footer__contact__phone"
+      >+7 (910) 220-00-53</a
+      >
+      <a href="#" class="footer__contact"
+      >г. Белгород, ул. Рабочая, д. 2Д</a
+      >
+    </div>
+  </section>
+</footer>
+<!-- Add your site or application content here -->
+
+<script src="./js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="./js/vendor/jquery-3.7.0.js"></script>
+<script src="./js/plugins.js"></script>
+<script src="./js/main.js"></script>
+
+<!-- <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    ItcSlider.getOrCreateInstance('#bottomSlider');
+  });
+</script> -->
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<!--<script>-->
+<!--  window.ga = function () {-->
+<!--    ga.q.push(arguments)-->
+<!--  };-->
+<!--  ga.q = [];-->
+<!--  ga.l = +new Date;-->
+<!--  ga('create', 'UA-XXXXX-Y', 'auto');-->
+<!--  ga('set', 'anonymizeIp', true);-->
+<!--  ga('set', 'transport', 'beacon');-->
+<!--  ga('send', 'pageview')-->
+<!--</script>-->
+<!--<script src="https://www.google-analytics.com/analytics.js" async></script>-->
+</body>
 </html>

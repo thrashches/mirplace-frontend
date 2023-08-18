@@ -1,15 +1,14 @@
 const yourNavigation = $(".main-navbar__wrapper");
-    stickyDiv = "sticky";
-    yourHeader = $('.fixed-navbar__wrapper').height();
+stickyDiv = "sticky";
+yourHeader = $('.fixed-navbar__wrapper').height();
 
-$(window).scroll(function() {
-  if( $(this).scrollTop() > yourHeader ) {
+$(window).scroll(function () {
+  if ($(this).scrollTop() > yourHeader) {
     yourNavigation.addClass(stickyDiv);
   } else {
     yourNavigation.removeClass(stickyDiv);
   }
 });
-
 
 
 class Slider {
@@ -70,7 +69,7 @@ class Slider {
     this.sliderItems[this.active].classList.toggle('active');
     this.sliderItems[this.nextItem].classList.toggle('next');
     if (this.active - 1 >= 0) {
-      if (this.prevItem > 0){
+      if (this.prevItem > 0) {
         this.prevItem = this.active - 2;
       } else {
         this.prevItem = this.sliderItems.length - 1;
@@ -90,3 +89,87 @@ class Slider {
 
 
 const slider = new Slider('slider', 8000);
+
+
+const geoLink = document.getElementById('geoLink');
+geoLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  toggleGeoPopup();
+})
+
+function toggleGeoPopup() {
+  const currentGeo = document.getElementById('currentGeo');
+  currentGeo.classList.toggle('hidden');
+}
+
+class CitySearch {
+  currentLocation = "Белгород"
+  locations = [
+    "Белгород",
+    "Москва",
+    "Санкт-Петербург",
+    "Екатеринбург",
+    "Казань",
+    "Воронеж",
+    "Ростов-на-Дону",
+    "Пермь",
+    "Самара",
+    "Красноярск",
+  ]
+  filteredLocations = [
+    "Белгород",
+    "Москва",
+    "Санкт-Петербург",
+    "Екатеринбург",
+    "Казань",
+    "Воронеж",
+    "Ростов-на-Дону",
+    "Пермь",
+    "Самара",
+    "Красноярск",
+  ]
+  searchElem = null;
+  resultsElem = null;
+
+  constructor() {
+    this.searchElem = document.getElementById("modalSearch");
+    this.resultsElem = document.getElementById("searchResults");
+    this.searchElem.addEventListener('input', (e) => this.filter(e.target.value));
+    this.render();
+  }
+
+  filter(searchString) {
+    this.filteredLocations = this.locations.filter((i) => i.toLowerCase().includes(searchString.toLowerCase()));
+    this.render();
+  }
+
+  select(value) {
+    this.currentLocation = value;
+    this.searchElem.value = value;
+    this.filter(value);
+    this.render();
+  }
+
+  render() {
+    this.resultsElem.innerHTML = "";
+    for (let item of this.filteredLocations) {
+      const elem = document.createElement('div');
+      elem.classList.add('search-result');
+      elem.innerText = item;
+      elem.addEventListener('click', () => this.select(item));
+      if (item === this.currentLocation) {
+        elem.classList.add('search-result__selected');
+      }
+
+      this.resultsElem.appendChild(elem);
+    }
+  }
+}
+
+const citySearch = new CitySearch();
+
+
+function toggleGeoModal() {
+  const geoModal = document.getElementById('geoModal');
+  geoModal.classList.toggle('hidden');
+}
