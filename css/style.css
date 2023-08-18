@@ -80,7 +80,8 @@ main {
 }
 
 .main-navbar__wrapper {
-  padding: 12px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   background-color: #ffffff;
   z-index: 10;
   width: 100%;
