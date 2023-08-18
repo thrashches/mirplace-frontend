@@ -135,6 +135,7 @@
 }
 
 .search-result__selected {
+  position: relative;
   color: var(--primary-600, #0085FF);
   font-variant-numeric: lining-nums proportional-nums;
   /* Desktop/16/16 Medium */
@@ -143,4 +144,19 @@
   font-style: normal;
   font-weight: 500;
   line-height: 24px; /* 150% */
+}
+
+.search-result__selected::after {
+  display: inline-block;
+  position: absolute;
+  content: " ";
+  /*top: 12px;*/
+  top: calc(50% - 12px);
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  background-image: url("../img/svg/interface/check.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
