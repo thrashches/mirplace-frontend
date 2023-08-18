@@ -35,7 +35,6 @@
 
 .slider__item {
   position: absolute;
-  background: linear-gradient(90deg, #ff8008 0%, #ffc837 100%);
   display: grid;
   grid-template-columns: 2fr 1fr;
   width: 100%;
@@ -43,6 +42,13 @@
   /*transform: translateX(-100%);*/
   /*transition: ease-out;*/
   transition-duration: 0.4s;
+}
+
+.slider__background {
+  z-index: 1;
+  background-color: var(--primary-600, #7d7d7d);
+  height: 100%;
+  width: 100%;
 }
 
 .prev {
@@ -54,7 +60,7 @@
 .active {
   /*display: flex;*/
   transform: unset;
-  z-index: 1;
+  z-index: 2;
 }
 
 .next {
