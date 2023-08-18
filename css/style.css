@@ -92,19 +92,34 @@ main {
 }
 
 .main-navbar {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr;
   align-items: center;
-  gap: 16px;
-  justify-content: space-between;
+  column-gap: 16px;
+}
+
+@media (min-width: 576px) {
+  .main-navbar {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .main-navbar {
+    grid-template-columns: 1fr 1fr 6fr 1fr;
+  }
 }
 
 .logo {
-  display: inline-block;
+  display: block;
+  /*padding: 24px;*/
   width: 92px;
-  height: 56px;
+  height: 48px;
   content: " ";
   background-image: url("../img/svg/Logo.svg");
+  background-size: 92px 48px;
+  background-repeat: no-repeat;
 }
 
 .icon-link {
@@ -252,7 +267,9 @@ main {
 }
 
 .btn-menu {
+  width: 100%;
   padding-left: 36px !important;
+  box-sizing: border-box;
 }
 
 .btn-menu::before {
@@ -514,6 +531,7 @@ main {
 
 .card__footer {
   display: flex;
+  padding-top: 16px;
   width: 100%;
 }
 
